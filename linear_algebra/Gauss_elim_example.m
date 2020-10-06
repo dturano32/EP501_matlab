@@ -13,6 +13,7 @@ xgauss=backsub(Amod(ord,:));
 disp('Back substitution solution using Gaussian elimination result:  ');
 disp(xgauss);
 
+% Determinante = det(Amod)
 
 % %% Print step by step solution (Gauss elimination) for a simple system to illustrate
 % disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');

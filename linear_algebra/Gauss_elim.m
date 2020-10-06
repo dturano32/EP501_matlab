@@ -22,7 +22,7 @@ end %if
 Amod=cat(2,A,b);          %make a copy of A and modify with RHS of system
 n=size(A,1);              %number of unknowns
 ord=(1:n)';               %ord is a mapping from input row being operated upon to the actual row that represents in the matrix ordering
-
+count = 1;                %count for determinant
 %Elimination with scaled, partial pivoting for matrix Amod; note all row
 %indices must be screen through ord mapping.
 for ir1=1:n-1
@@ -49,6 +49,7 @@ for ir1=1:n-1
         itmp=ord(ir1);
         ord(ir1)=ord(ipivmax);
         ord(ipivmax)=itmp;
+        count= count*-1;  %to chnage the sign of the determinant due to piviting
         
         if (verbose)
             disp('Interchanging rows:  ');
@@ -75,4 +76,16 @@ for ir1=1:n-1
     end %if
 end %for
 
+Areorder = Amod(ord,:);
+R = prod(diag(Areorder));
+Deter = R*count;
+
+disp('Gauss_elim determinant solution:  ');
+disp(Deter);
+
+disp('Matlab,GNU/Octave built-in solution:  ');
+disp(det(A));
+
 end %function
+
+  
